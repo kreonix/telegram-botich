@@ -1,0 +1,21 @@
+{
+  "name": "telegram-botich",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pretest": "eslint --ignore-path .gitignore ."
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-eslint": "^8.2.5",
+    "eslint": "^4.19.1",
+    "eslint-config-atomix-react": "^4.4.2",
+    "node-telegram-bot-api": "^0.30.0",
+    "nodemon": "^1.17.5",
+    "request": "^2.87.0",
+    "request-promise": "^4.2.2"
+  }
+}
