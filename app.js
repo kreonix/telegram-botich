@@ -22,11 +22,14 @@ const currency = {
   },
 }
 const fetchData = (currencydata, chatId) => {
-  rp(`http://www.nbrb.by/API/ExRates/Rates/${currencydata.id}`)
+  rp.get(`http://www.nbrb.by/API/ExRates/Rates/${currencydata.id}`)
     .then((resp) => {
       const cur = JSON.parse(resp)
 
       bot.sendMessage(chatId, `Курс ${currencydata.name.toUpperCase()}: ${cur.Cur_OfficialRate}`)
+    })
+    .catch((error) => {
+      console.log(error)
     })
 }
 
@@ -38,13 +41,8 @@ bot.onText(/\/start/, (msg) => {
 bot.on('message', (msg) => {
   const chatId = msg.chat.id
 
-  if (msg.text.toString().toLowerCase().indexOf(currency.usd.name) === 0) {
-    fetchData(currency.usd, chatId)
-  }
-  if (msg.text.toString().toLowerCase().indexOf(currency.eur.name) === 0) {
-    fetchData(currency.eur, chatId)
-  }
-  if (msg.text.toString().toLowerCase().indexOf(currency.rub.name) === 0) {
-    fetchData(currency.rub, chatId)
+  console.log(msg.text.toString().toLowerCase())
+  if (msg.text.toString().toLowerCase() in currency) {
+    fetchData(currency[msg.text.toString().toLowerCase()], chatId)
   }
 })
